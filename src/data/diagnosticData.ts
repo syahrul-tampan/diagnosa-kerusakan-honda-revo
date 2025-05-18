@@ -95,7 +95,7 @@ export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
   let severity: 'low' | 'medium' | 'high' = 'medium';
   let recommendation = '';
   
-  // Rule-based diagnosis (simplified from the knowledge base provided)
+  // Rule-based diagnosis based on the specific rules provided
   if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G21') && selectedSymptomIds.includes('G26')) {
     issue = 'Busi Kotor atau Rusak';
     description = 'Gejala menunjukkan masalah pada sistem pengapian, khususnya busi.';
@@ -120,6 +120,24 @@ export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
     severity = 'medium';
     recommendation = 'Bongkar dan bersihkan karburator, periksa semua saluran dan jet.';
   }
+  else if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G03') && selectedSymptomIds.includes('G27')) {
+    issue = 'Saluran Bahan Bakar Tersumbat';
+    description = 'Penyumbatan pada saluran bahan bakar yang menghambat aliran bensin.';
+    severity = 'medium';
+    recommendation = 'Bersihkan saluran bahan bakar dan ganti filter bahan bakar.';
+  }
+  else if (selectedSymptomIds.includes('G03') && selectedSymptomIds.includes('G04') && selectedSymptomIds.includes('G05')) {
+    issue = 'Filter Udara Kotor';
+    description = 'Filter udara kotor menyebabkan campuran bahan bakar dan udara tidak optimal.';
+    severity = 'low';
+    recommendation = 'Bersihkan atau ganti filter udara.';
+  }
+  else if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G03') && selectedSymptomIds.includes('G27') && selectedSymptomIds.includes('G04')) {
+    issue = 'Injektor Kotor atau Rusak';
+    description = 'Masalah pada injektor yang menyebabkan pembakaran tidak optimal.';
+    severity = 'medium';
+    recommendation = 'Bersihkan injektor atau ganti dengan yang baru.';
+  }
   else if (selectedSymptomIds.includes('G03') && selectedSymptomIds.includes('G04') && selectedSymptomIds.includes('G06') && selectedSymptomIds.includes('G29')) {
     issue = 'Ring Piston Aus';
     description = 'Ring piston yang aus menyebabkan kompresi mesin menurun dan konsumsi oli meningkat.';
@@ -143,6 +161,18 @@ export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
     description = 'Masalah pada aki yang menyebabkan gangguan pada sistem kelistrikan.';
     severity = 'medium';
     recommendation = 'Isi ulang aki atau ganti dengan yang baru.';
+  }
+  else if (selectedSymptomIds.includes('G06') && selectedSymptomIds.includes('G29') && selectedSymptomIds.includes('G30')) {
+    issue = 'Seal Katup Bocor';
+    description = 'Kebocoran pada seal katup yang menyebabkan oli masuk ke ruang bakar.';
+    severity = 'high';
+    recommendation = 'Ganti seal katup.';
+  }
+  else if (selectedSymptomIds.includes('G07') && selectedSymptomIds.includes('G20') && selectedSymptomIds.includes('G28')) {
+    issue = 'Crankshaft Bearing Rusak';
+    description = 'Kerusakan pada bearing crankshaft yang menyebabkan suara abnormal pada mesin.';
+    severity = 'high';
+    recommendation = 'Ganti crankshaft bearing.';
   }
   else {
     // Default diagnosis based on the predominant category

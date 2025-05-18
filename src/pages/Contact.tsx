@@ -15,12 +15,12 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <Card className="overflow-hidden">
               <img 
-                src="/workshop.jpg" 
-                alt="Bengkel Revo Diagnostics" 
+                src="/lovable-uploads/d527bdd5-1e09-41e4-97a3-6d60e2bff1a0.png" 
+                alt="Bengkel Osama Service" 
                 className="w-full h-64 object-cover"
               />
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-2">Bengkel Revo Diagnostics</h2>
+                <h2 className="text-2xl font-bold mb-2">Bengkel Osama Service</h2>
                 <p className="text-muted-foreground mb-4">
                   Bengkel spesialis diagnosa dan perbaikan kendaraan modern dengan teknologi terkini.
                 </p>
