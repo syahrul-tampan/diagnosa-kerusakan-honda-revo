@@ -1,52 +1,62 @@
 
-import { Symptom } from "@/types/diagnostic";
+import { Symptom, DiagnosticResult } from "@/types/diagnostic";
 
-// Symptom categories and their respective symptoms
+// Komponen utama dengan gejala-gejala yang terkait
 export const engineSymptoms: Symptom[] = [
-  { id: "e1", name: "Mesin tidak mau menyala", category: "engine" },
-  { id: "e2", name: "Mesin mati mendadak", category: "engine" },
-  { id: "e3", name: "Suara mesin kasar", category: "engine" },
-  { id: "e4", name: "Mesin tersendat saat akselerasi", category: "engine" },
-  { id: "e5", name: "Asap knalpot berwarna hitam", category: "engine" },
-  { id: "e6", name: "Asap knalpot berwarna biru", category: "engine" },
-  { id: "e7", name: "Asap knalpot berwarna putih", category: "engine" },
-  { id: "e8", name: "Mesin overheat", category: "engine" }
+  { id: "G01", name: "Mesin sulit dihidupkan", category: "engine" },
+  { id: "G02", name: "Mesin mati secara tiba-tiba", category: "engine" },
+  { id: "G03", name: "Tenaga mesin lemah", category: "engine" },
+  { id: "G04", name: "Konsumsi bahan bakar boros", category: "engine" },
+  { id: "G05", name: "Asap knalpot hitam pekat", category: "engine" },
+  { id: "G06", name: "Asap knalpot berwarna putih/biru", category: "engine" },
+  { id: "G07", name: "Suara mesin kasar", category: "engine" },
+  { id: "G08", name: "Mesin cepat panas", category: "engine" },
+  { id: "G28", name: "Bunyi ketukan dari mesin", category: "engine" },
+  { id: "G29", name: "Oli mesin cepat habis", category: "engine" },
+  { id: "G30", name: "Kebocoran oli", category: "engine" },
+];
+
+export const fuelSystemSymptoms: Symptom[] = [
+  { id: "G22", name: "Karburator sering kemasukan air", category: "fuelSystem" },
+  { id: "G23", name: "Bahan bakar bocor", category: "fuelSystem" },
+  { id: "G24", name: "Tarikan gas tidak responsif", category: "fuelSystem" },
+  { id: "G27", name: "Motor tersendat saat akselerasi", category: "fuelSystem" },
+];
+
+export const ignitionSystemSymptoms: Symptom[] = [
+  { id: "G21", name: "Percikan api pada busi lemah", category: "ignitionSystem" },
+  { id: "G25", name: "Indikator lampu oli menyala", category: "ignitionSystem" },
+  { id: "G26", name: "Tidak ada percikan api pada busi", category: "ignitionSystem" },
 ];
 
 export const transmissionSymptoms: Symptom[] = [
-  { id: "t1", name: "Perpindahan gigi sulit", category: "transmission" },
-  { id: "t2", name: "Transmisi selip", category: "transmission" },
-  { id: "t3", name: "Getaran saat perpindahan gigi", category: "transmission" },
-  { id: "t4", name: "Suara berisik dari transmisi", category: "transmission" },
-  { id: "t5", name: "Kebocoran fluida transmisi", category: "transmission" }
+  { id: "G11", name: "Perpindahan gigi keras", category: "transmission" },
+  { id: "G20", name: "Bunyi dengung dari area mesin", category: "transmission" },
 ];
 
 export const electricalSymptoms: Symptom[] = [
-  { id: "el1", name: "Lampu dashboard menyala", category: "electrical" },
-  { id: "el2", name: "Baterai cepat habis", category: "electrical" },
-  { id: "el3", name: "Starter lemah", category: "electrical" },
-  { id: "el4", name: "Sistem audio tidak berfungsi", category: "electrical" },
-  { id: "el5", name: "Lampu-lampu tidak menyala", category: "electrical" }
+  { id: "G09", name: "Starter elektrik tidak berfungsi", category: "electrical" },
+  { id: "G10", name: "Kick starter berat", category: "electrical" },
+  { id: "G12", name: "Lampu depan redup atau mati", category: "electrical" },
+  { id: "G13", name: "Klakson tidak berbunyi atau lemah", category: "electrical" },
+  { id: "G14", name: "Indikator bensin tidak akurat", category: "electrical" },
 ];
 
 export const brakeSymptoms: Symptom[] = [
-  { id: "b1", name: "Rem berbunyi", category: "brake" },
-  { id: "b2", name: "Jarak pengereman jauh", category: "brake" },
-  { id: "b3", name: "Pedal rem terasa spons", category: "brake" },
-  { id: "b4", name: "Mobil bergetar saat pengereman", category: "brake" },
-  { id: "b5", name: "Rem menarik ke satu sisi", category: "brake" }
+  { id: "G15", name: "Rem tidak pakem", category: "brake" },
+  { id: "G16", name: "Suara decit saat pengereman", category: "brake" },
 ];
 
 export const suspensionSymptoms: Symptom[] = [
-  { id: "s1", name: "Guncangan berlebihan", category: "suspension" },
-  { id: "s2", name: "Mobil miring ke satu sisi", category: "suspension" },
-  { id: "s3", name: "Kemudi sulit dikendalikan", category: "suspension" },
-  { id: "s4", name: "Suara ketukan dari suspensi", category: "suspension" },
-  { id: "s5", name: "Ban aus tidak merata", category: "suspension" }
+  { id: "G17", name: "Getaran berlebih pada stang", category: "suspension" },
+  { id: "G18", name: "Suspensi terasa keras", category: "suspension" },
+  { id: "G19", name: "Motor oleng saat berkendara", category: "suspension" },
 ];
 
 export const allSymptoms: Symptom[] = [
   ...engineSymptoms,
+  ...fuelSystemSymptoms,
+  ...ignitionSystemSymptoms,
   ...transmissionSymptoms,
   ...electricalSymptoms,
   ...brakeSymptoms,
@@ -59,7 +69,6 @@ export const getSymptomById = (id: string): Symptom | undefined => {
 
 // Logic to determine diagnostic results based on selected symptoms
 export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
-  // Logic for assessing the selected symptoms and determining the issue
   const selectedSymptoms = selectedSymptomIds.map(id => 
     allSymptoms.find(s => s.id === id)
   ).filter((s): s is Symptom => !!s);
@@ -80,70 +89,119 @@ export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
     }
   });
   
-  // Generate diagnostic result based on the predominant category and specific symptoms
+  // Generate diagnostic result based on rules and selected symptoms
   let issue = '';
   let description = '';
   let severity: 'low' | 'medium' | 'high' = 'medium';
   let recommendation = '';
   
-  switch(maxCategory) {
-    case 'engine':
-      if (selectedSymptomIds.includes('e1') || selectedSymptomIds.includes('e2')) {
-        issue = 'Masalah Sistem Bahan Bakar';
-        description = 'Kemungkinan ada masalah dengan pasokan bahan bakar, pompa bahan bakar, atau sistem pengapian.';
-        severity = 'high';
-        recommendation = 'Periksa filter dan pompa bahan bakar, serta sistem pengapian di bengkel terdekat.';
-      } else if (selectedSymptomIds.includes('e5') || selectedSymptomIds.includes('e6') || selectedSymptomIds.includes('e7')) {
-        issue = 'Masalah Pembakaran';
-        description = 'Pembakaran tidak sempurna atau kebocoran oli dapat menyebabkan asap dari knalpot.';
+  // Rule-based diagnosis (simplified from the knowledge base provided)
+  if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G21') && selectedSymptomIds.includes('G26')) {
+    issue = 'Busi Kotor atau Rusak';
+    description = 'Gejala menunjukkan masalah pada sistem pengapian, khususnya busi.';
+    severity = 'medium';
+    recommendation = 'Bersihkan busi dengan sikat kawat dan setel jarak elektroda, atau ganti busi baru jika sudah rusak.';
+  } 
+  else if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G26') && !selectedSymptomIds.includes('G21')) {
+    issue = 'CDI Rusak';
+    description = 'Gejala menunjukkan kerusakan pada unit CDI yang mempengaruhi sistem pengapian.';
+    severity = 'high';
+    recommendation = 'Ganti unit CDI dengan yang baru.';
+  }
+  else if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G02') && selectedSymptomIds.includes('G26')) {
+    issue = 'Koil Pengapian Rusak';
+    description = 'Masalah pada koil pengapian yang menyebabkan sistem pengapian tidak optimal.';
+    severity = 'high';
+    recommendation = 'Ganti koil pengapian dengan yang baru.';
+  }
+  else if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G03') && selectedSymptomIds.includes('G04') && selectedSymptomIds.includes('G05')) {
+    issue = 'Karburator Kotor';
+    description = 'Karburator yang kotor menyebabkan campuran bahan bakar dan udara tidak optimal.';
+    severity = 'medium';
+    recommendation = 'Bongkar dan bersihkan karburator, periksa semua saluran dan jet.';
+  }
+  else if (selectedSymptomIds.includes('G03') && selectedSymptomIds.includes('G04') && selectedSymptomIds.includes('G06') && selectedSymptomIds.includes('G29')) {
+    issue = 'Ring Piston Aus';
+    description = 'Ring piston yang aus menyebabkan kompresi mesin menurun dan konsumsi oli meningkat.';
+    severity = 'high';
+    recommendation = 'Ganti ring piston dan periksa kondisi silinder.';
+  }
+  else if (selectedSymptomIds.includes('G17') && selectedSymptomIds.includes('G18') && selectedSymptomIds.includes('G19')) {
+    issue = 'Shock Absorber Bocor';
+    description = 'Kerusakan pada sistem suspensi yang menyebabkan ketidakstabilan kendaraan.';
+    severity = 'medium';
+    recommendation = 'Ganti shock absorber.';
+  }
+  else if (selectedSymptomIds.includes('G15') && selectedSymptomIds.includes('G16')) {
+    issue = 'Kampas Rem Aus';
+    description = 'Kemampuan pengereman berkurang karena kampas rem yang sudah aus.';
+    severity = 'high';
+    recommendation = 'Ganti kampas rem.';
+  }
+  else if (selectedSymptomIds.includes('G09') && selectedSymptomIds.includes('G12') && selectedSymptomIds.includes('G13')) {
+    issue = 'Aki Lemah atau Rusak';
+    description = 'Masalah pada aki yang menyebabkan gangguan pada sistem kelistrikan.';
+    severity = 'medium';
+    recommendation = 'Isi ulang aki atau ganti dengan yang baru.';
+  }
+  else {
+    // Default diagnosis based on the predominant category
+    switch(maxCategory) {
+      case 'engine':
+        issue = 'Masalah pada Mesin';
+        description = 'Gejala menunjukkan adanya gangguan pada sistem mesin kendaraan.';
         severity = 'medium';
-        recommendation = 'Lakukan pemeriksaan injector, kompresi mesin, dan kemungkinan kebocoran oli.';
-      } else if (selectedSymptomIds.includes('e8')) {
-        issue = 'Masalah Sistem Pendinginan';
-        description = 'Mesin overheat bisa disebabkan radiator tersumbat, kebocoran coolant, atau kipas pendingin rusak.';
-        severity = 'high';
-        recommendation = 'Segera hentikan kendaraan dan cek level coolant. Kunjungi bengkel terdekat untuk pengecekan radiator.';
-      } else {
-        issue = 'Masalah Mesin Umum';
-        description = 'Ada beberapa gejala yang menunjukkan masalah pada mesin kendaraan Anda.';
+        recommendation = 'Lakukan pemeriksaan menyeluruh pada komponen mesin.';
+        break;
+        
+      case 'fuelSystem':
+        issue = 'Masalah pada Sistem Bahan Bakar';
+        description = 'Ada indikasi gangguan pada sistem bahan bakar kendaraan.';
         severity = 'medium';
-        recommendation = 'Lakukan pemeriksaan menyeluruh pada mesin oleh teknisi berpengalaman.';
-      }
-      break;
-      
-    case 'transmission':
-      issue = 'Masalah Transmisi';
-      description = 'Gejala menunjukkan potensi masalah pada sistem transmisi kendaraan.';
-      severity = 'medium';
-      recommendation = 'Periksa level dan kualitas fluida transmisi. Konsultasikan dengan spesialis transmisi.';
-      break;
-      
-    case 'electrical':
-      issue = 'Masalah Sistem Kelistrikan';
-      description = 'Ada indikasi masalah pada sistem kelistrikan atau pengisian kendaraan.';
-      severity = 'medium';
-      recommendation = 'Periksa baterai, alternator, dan kabel-kabel kelistrikan untuk menemukan masalahnya.';
-      break;
-      
-    case 'brake':
-      issue = 'Masalah Sistem Pengereman';
-      description = 'Gejala menunjukkan kemungkinan masalah pada sistem pengereman kendaraan.';
-      severity = 'high';
-      recommendation = 'Segera periksa kondisi kampas rem, piringan rem, dan fluida rem untuk keselamatan berkendara.';
-      break;
-      
-    case 'suspension':
-      issue = 'Masalah Sistem Suspensi';
-      description = 'Terdapat indikasi masalah pada sistem suspensi atau steering kendaraan.';
-      severity = 'medium';
-      recommendation = 'Lakukan pemeriksaan pada shock absorber, ball joint, dan komponen suspensi lainnya.';
-      break;
-      
-    default:
-      issue = 'Masalah Campuran';
-      description = 'Gejala yang dipilih menunjukkan beberapa masalah yang berbeda pada kendaraan.';
-      severity = 'medium';
-      recommendation = 'Lakukan pemeriksaan menyeluruh pada kendaraan oleh teknisi berpengalaman.';
+        recommendation = 'Periksa karburator, saluran dan filter bahan bakar.';
+        break;
+        
+      case 'ignitionSystem':
+        issue = 'Masalah pada Sistem Pengapian';
+        description = 'Gejala menunjukkan gangguan pada komponen sistem pengapian.';
+        severity = 'medium';
+        recommendation = 'Periksa busi, CDI, koil, dan komponen pengapian lainnya.';
+        break;
+        
+      case 'transmission':
+        issue = 'Masalah pada Sistem Transmisi';
+        description = 'Gangguan pada sistem transmisi kendaraan.';
+        severity = 'medium';
+        recommendation = 'Periksa kondisi kopling, rantai, dan gigi transmisi.';
+        break;
+        
+      case 'electrical':
+        issue = 'Masalah pada Sistem Kelistrikan';
+        description = 'Ada indikasi gangguan pada sistem kelistrikan kendaraan.';
+        severity = 'medium';
+        recommendation = 'Periksa aki, kabel-kabel, dan sekering.';
+        break;
+        
+      case 'brake':
+        issue = 'Masalah pada Sistem Pengereman';
+        description = 'Gangguan pada sistem pengereman kendaraan.';
+        severity = 'high';
+        recommendation = 'Periksa kampas rem, cakram/tromol, dan minyak rem.';
+        break;
+        
+      case 'suspension':
+        issue = 'Masalah pada Sistem Suspensi';
+        description = 'Ada indikasi gangguan pada sistem suspensi kendaraan.';
+        severity = 'medium';
+        recommendation = 'Periksa shock absorber, bearing roda, dan komponen suspensi lainnya.';
+        break;
+        
+      default:
+        issue = 'Masalah Campuran';
+        description = 'Gejala yang dipilih menunjukkan beberapa masalah yang berbeda pada kendaraan.';
+        severity = 'medium';
+        recommendation = 'Lakukan pemeriksaan menyeluruh pada kendaraan oleh teknisi berpengalaman.';
+    }
   }
   
   return {

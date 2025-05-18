@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Symptom } from '@/types/diagnostic';
 import { 
   engineSymptoms, 
+  fuelSystemSymptoms,
+  ignitionSystemSymptoms,
   transmissionSymptoms, 
   electricalSymptoms, 
   brakeSymptoms, 
@@ -49,14 +51,18 @@ const SymptomSelector: React.FC<SymptomSelectorProps> = ({ selectedSymptoms, onS
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="engine" value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-5 mb-4">
+          <TabsList className="grid grid-cols-7 mb-4">
             <TabsTrigger value="engine">Mesin</TabsTrigger>
+            <TabsTrigger value="fuelSystem">Bahan Bakar</TabsTrigger>
+            <TabsTrigger value="ignitionSystem">Pengapian</TabsTrigger>
             <TabsTrigger value="transmission">Transmisi</TabsTrigger>
             <TabsTrigger value="electrical">Kelistrikan</TabsTrigger>
             <TabsTrigger value="brake">Rem</TabsTrigger>
             <TabsTrigger value="suspension">Suspensi</TabsTrigger>
           </TabsList>
           <TabsContent value="engine">{renderSymptomList(engineSymptoms)}</TabsContent>
+          <TabsContent value="fuelSystem">{renderSymptomList(fuelSystemSymptoms)}</TabsContent>
+          <TabsContent value="ignitionSystem">{renderSymptomList(ignitionSystemSymptoms)}</TabsContent>
           <TabsContent value="transmission">{renderSymptomList(transmissionSymptoms)}</TabsContent>
           <TabsContent value="electrical">{renderSymptomList(electricalSymptoms)}</TabsContent>
           <TabsContent value="brake">{renderSymptomList(brakeSymptoms)}</TabsContent>
