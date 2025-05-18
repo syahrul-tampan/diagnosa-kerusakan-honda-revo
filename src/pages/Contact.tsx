@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -30,15 +30,7 @@ const Contact = () => {
                     <Phone className="text-revo-primary" />
                     <div>
                       <p className="font-medium">Telepon</p>
-                      <p className="text-muted-foreground">+62 812-3456-7890</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <Mail className="text-revo-primary" />
-                    <div>
-                      <p className="font-medium">Email</p>
-                      <p className="text-muted-foreground">bantuan@revodiagnostics.com</p>
+                      <p className="text-muted-foreground">+62 813-7013-8399</p>
                     </div>
                   </div>
                   
@@ -46,7 +38,7 @@ const Contact = () => {
                     <MapPin className="text-revo-primary" />
                     <div>
                       <p className="font-medium">Alamat</p>
-                      <p className="text-muted-foreground">Jl. Otomotif No. 123, Jakarta Selatan</p>
+                      <p className="text-muted-foreground">Jl. Syiah Kuala, Tualang Teungoh, Kec. Langsa Kota, Kota Langsa, Aceh 24354</p>
                     </div>
                   </div>
                 </div>
