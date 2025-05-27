@@ -79,7 +79,7 @@ export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
     categoryCounts[symptom.category] = (categoryCounts[symptom.category] || 0) + 1;
   });
   
-  // Find the predominant category
+  // mencari kategori berdasarkan dominan
   let maxCategory = '';
   let maxCount = 0;
   Object.entries(categoryCounts).forEach(([category, count]) => {
@@ -89,13 +89,13 @@ export const getDiagnosticResults = (selectedSymptomIds: string[]) => {
     }
   });
   
-  // Generate diagnostic result based on rules and selected symptoms
+  // membuat hasil diagnosa
   let issue = '';
   let description = '';
   let severity: 'low' | 'medium' | 'high' = 'medium';
   let recommendation = '';
   
-  // Rule-based diagnosis based on the specific rules provided
+  // aturan diagnosa forward chaining
   if (selectedSymptomIds.includes('G01') && selectedSymptomIds.includes('G21') && selectedSymptomIds.includes('G26')) {
     issue = 'Busi Kotor atau Rusak';
     description = 'Gejala menunjukkan masalah pada sistem pengapian, khususnya busi.';
